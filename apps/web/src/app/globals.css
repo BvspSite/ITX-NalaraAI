@@ -1,0 +1,421 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
+  --color-surface3: var(--surface3);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-dim: var(--text-dim);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-light: var(--brand-light);
+  --color-accent: var(--accent);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-heading: var(--text-heading);
+  --color-body: var(--text-body);
+  --color-caption: var(--text-caption);
+
+  /* Typography: max 2 families (heading + body) */
+  --font-sans: var(--font-body-stack);
+  --font-heading: var(--font-heading-stack);
+  --font-serif: var(--font-heading-stack);
+  --font-mono: var(--font-body-stack);
+}
+
+/* -------------------------------------------------------------------------
+   NALARA DESIGN TOKENS (Sourced directly from DESIGN.md)
+   ------------------------------------------------------------------------- */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+:root, :root[data-theme="emerald"] {
+  --bg: #0A0F0D;
+  --surface: #111814;
+  --surface2: #19241E;
+  --surface3: #22322A;
+  --text: #F0FDF4;
+  --text-muted: #B4D3C5;
+  --text-dim: #7A9E8E;
+  --border: rgba(22, 168, 128, 0.25);
+  --brand: #16A880;
+  --brand-light: #22D3A1;
+  --brand-dark: #0E8A68;
+  --brand-rgb: 22, 168, 128;
+  --accent: #F59E0B;
+  --error: #F87171;
+  --success: #4ADE80;
+  --glow-primary: rgba(22, 168, 128, 0.18);
+  --glow-secondary: rgba(245, 158, 11, 0.08);
+  --backdrop: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] {
+  --bg: #FAFAF9;
+  --surface: #FFFFFF;
+  --surface2: #F1F5F9;
+  --surface3: #E2E8F0;
+  --text: #0F172A;
+  --text-muted: #475569;
+  --text-dim: #475569;
+  --text-heading: #0F172A;
+  --text-body: #334155;
+  --text-caption: #475569;
+  --border: rgba(0, 0, 0, 0.12);
+  --brand: #0D9488;
+  --brand-light: #14B8A6;
+  --brand-dark: #0F766E;
+  --brand-rgb: 13, 148, 136;
+  --accent: #D97706;
+  --error: #EF4444;
+  --success: #16A34A;
+  --glow-primary: rgba(13, 148, 136, 0.12);
+  --glow-secondary: rgba(217, 119, 6, 0.06);
+  --backdrop: rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="royal"] {
+  --bg: #0A0E1A;
+  --surface: #10162B;
+  --surface2: #1B2446;
+  --surface3: #263360;
+  --text: #EEF2FF;
+  --text-muted: #C7D2FE;
+  --text-dim: #818CF8;
+  --border: rgba(99, 102, 241, 0.28);
+  --brand: #6366F1;
+  --brand-light: #818CF8;
+  --brand-dark: #4F46E5;
+  --brand-rgb: 99, 102, 241;
+  --accent: #F59E0B;
+  --error: #FB7185;
+  --success: #4ADE80;
+  --glow-primary: rgba(99, 102, 241, 0.2);
+  --glow-secondary: rgba(245, 158, 11, 0.08);
+  --backdrop: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="midnight"] {
+  --bg: #030303;
+  --surface: #0E0E12;
+  --surface2: #161620;
+  --surface3: #222232;
+  --text: #FAF5FF;
+  --text-muted: #DDD6FE;
+  --text-dim: #A78BFA;
+  --border: rgba(139, 92, 246, 0.3);
+  --brand: #8B5CF6;
+  --brand-light: #A78BFA;
+  --brand-dark: #7C3AED;
+  --brand-rgb: 139, 92, 246;
+  --accent: #F59E0B;
+  --error: #F43F5E;
+  --success: #4ADE80;
+  --glow-primary: rgba(139, 92, 246, 0.2);
+  --glow-secondary: rgba(245, 158, 11, 0.08);
+  --backdrop: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="sunset"] {
+  --bg: #0F0D0C;
+  --surface: #181412;
+  --surface2: #241E1A;
+  --surface3: #322A24;
+  --text: #FFF7ED;
+  --text-muted: #FED7AA;
+  --text-dim: #FB923C;
+  --border: rgba(249, 115, 22, 0.28);
+  --brand: #F97316;
+  --brand-light: #FB923C;
+  --brand-dark: #EA580C;
+  --brand-rgb: 249, 115, 22;
+  --accent: #F59E0B;
+  --error: #F87171;
+  --success: #4ADE80;
+  --glow-primary: rgba(249, 115, 22, 0.2);
+  --glow-secondary: rgba(245, 158, 11, 0.08);
+  --backdrop: rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --font-heading-stack: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-body-stack: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* Text hierarchy for dark themes (light theme overrides these with slate-900/700/600).
+     Heading = brightest, body = ~88% of it, caption = theme's --text-dim (>= 6:1 on all dark surfaces). */
+  --text-heading: var(--text);
+  --text-body: color-mix(in srgb, var(--text) 88%, var(--bg));
+  --text-caption: var(--text-dim);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body-stack);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading-stack);
+    color: var(--text-heading);
+    text-wrap: balance;
+  }
+
+  /* Emphasised text inside paragraphs must be clearly heavier than its surroundings */
+  strong,
+  b {
+    font-weight: 700;
+    color: var(--text-heading);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
+
+/* Gradient Mask for Smooth Marquee Edge Fades */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  opacity: 0.4;
+  border-radius: 99px;
+}
+
+/* Legacy alias: `font-serif` is used across the codebase for headings and now
+   resolves to the heading font (Plus Jakarta Sans). Prefer `font-heading`. */
+.font-serif,
+.font-heading {
+  font-family: var(--font-heading-stack);
+}
+
+/* font-mono resolves to the body font (max 2 families); keep digits aligned */
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   TYPE SCALE (headings: Plus Jakarta Sans, body: Inter)
+   Semantic classes so sizes/weights are defined in one place.
+   ------------------------------------------------------------------------- */
+@layer components {
+  .t-h1 {
+    font-family: var(--font-heading-stack);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-heading);
+    text-wrap: balance;
+  }
+
+  .t-h2 {
+    font-family: var(--font-heading-stack);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--text-heading);
+    text-wrap: balance;
+  }
+
+  .t-h3 {
+    font-family: var(--font-heading-stack);
+    font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--text-heading);
+    text-wrap: balance;
+  }
+
+  .t-body {
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    max-width: 65ch;
+  }
+
+  .t-caption {
+    font-weight: 500;
+    color: var(--text-caption);
+  }
+
+  /* Statistic numbers: ExtraBold + tabular figures */
+  .t-stat {
+    font-family: var(--font-heading-stack);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   GPU-ACCELERATED KEYFRAME ANIMATIONS & PERFORMANCE UTILITIES
+   ------------------------------------------------------------------------- */
+@keyframes float-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-0.5deg);
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(2.5deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(3.8deg);
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(-4.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-3.5deg);
+  }
+}
+
+@keyframes float-chip-1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(4px, -10px, 0);
+  }
+}
+
+@keyframes float-chip-2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-6px, -12px, 0);
+  }
+}
+
+@keyframes float-chip-3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(5px, -9px, 0);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-float-1 {
+  animation: float-1 5.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-2 {
+  animation: float-2 6.4s ease-in-out 0.8s infinite;
+  will-change: transform;
+}
+
+.animate-float-3 {
+  animation: float-3 5.8s ease-in-out 1.5s infinite;
+  will-change: transform;
+}
+
+.animate-float-chip-1 {
+  animation: float-chip-1 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-chip-2 {
+  animation: float-chip-2 5.5s ease-in-out 0.6s infinite;
+  will-change: transform;
+}
+
+.animate-float-chip-3 {
+  animation: float-chip-3 4.8s ease-in-out 1.2s infinite;
+  will-change: transform;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar for clean horizontal snap carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-float-1,
+  .animate-float-2,
+  .animate-float-3,
+  .animate-float-chip-1,
+  .animate-float-chip-2,
+  .animate-float-chip-3,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
